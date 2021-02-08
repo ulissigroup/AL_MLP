@@ -2,7 +2,7 @@
 import unittest
 
 # import test modules
-from al_mlp.tests.case_oal_PtNP import oal_PtNP
+# from al_mlp.tests.case_oal_PtNP import oal_PtNP
 from al_mlp.tests.case_oal_CuNP import oal_CuNP
 
 # import make_ensemble and dask for setting parallelization
@@ -20,8 +20,6 @@ def plot_forces_hist(self) -> None:
 
     plt.figure()
     plt.hist(self.OAL_image.get_forces().flatten(), bins=100)
-    # plt.xlim([-0.08, 0.08])
-    # plt.ylim([0, 4])
     plt.title(self.description + " OAL forces distribution")
     plt.savefig("test_figs/" + self.description + "_OAL_hist")
 
@@ -46,15 +44,15 @@ suite = unittest.TestSuite()
 # oal_CuNP.addClassCleanup(plot_forces_hist)
 
 # load test case classes
-PtNP_suite = loader.loadTestsFromTestCase(oal_PtNP)
+# PtNP_suite = loader.loadTestsFromTestCase(oal_PtNP)
 CuNP_suite = loader.loadTestsFromTestCase(oal_CuNP)
 
 # add cleanup methods to test cases
-PtNP_suite._tests[0].addCleanup(plot_forces_hist, PtNP_suite._tests[0])
+# PtNP_suite._tests[0].addCleanup(plot_forces_hist, PtNP_suite._tests[0])
 CuNP_suite._tests[0].addCleanup(plot_forces_hist, CuNP_suite._tests[0])
 
 # add tests cases to the test suite
-suite.addTests(PtNP_suite)
+# suite.addTests(PtNP_suite)
 suite.addTests(CuNP_suite)
 
 # initialize a runner, pass it your suite and run it
